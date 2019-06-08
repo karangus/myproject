@@ -4,7 +4,7 @@ node {
     }
     
     stage('Build & Package') {
-      sshagent(['master'])
+	    sshagent(['master']) {
             sh 'mvn clean package'
         
     }
