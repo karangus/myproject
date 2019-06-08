@@ -4,9 +4,11 @@ node {
     }
     
     stage('Build & Package') {
+      sshagent(['master'])
             sh 'mvn clean package'
         
     }
+}
   stage('Deploy-to-Dev'){
     sshagent(['tomcat-dev']) {
          def tomcatIp='ip-172-31-88-209.ec2.internal'
