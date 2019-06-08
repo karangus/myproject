@@ -8,9 +8,6 @@ node {
         
     }
   stage('Deploy-to-Dev'){
-    // renaming warfile
-    sh 'mv target/myweb*.war target/myweb.war'
-   
     sshagent(['tomcat-dev']) {
          def tomcatIp='ec2-35-178-213-169.eu-west-2.compute.amazonaws.com'
          def tomcatUsr='jenkins'
@@ -23,10 +20,9 @@ node {
 		 }catch(e){
 		 
 		 }
-    
-    
-    
-    
+         }
+   }
+   
     stage('Results'){
         archive 'gameoflife-web/target/gameoflife.war'
         junit 'gameoflife-web/target/surefire-reports/*.xml'
