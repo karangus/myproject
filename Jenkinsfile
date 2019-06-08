@@ -12,10 +12,10 @@ node {
     sh 'mv target/myweb*.war target/myweb.war'
    
     sshagent(['tomcat-dev']) {
-         def tomcatIp='172.31.19.12'
+         def tomcatIp='ec2-35-178-213-169.eu-west-2.compute.amazonaws.com'
          def tomcatUsr='jenkins'
-         def stopTomcat = "${jenkins}@${172.31.19.12} /apache-tomcat-9.0.20/bin/shutdown.sh"
-         def startTomcat = "${jenkins}@${172.31.19.12} /apache-tomcat-9.0.20/startup.sh"
+         def stopTomcat = "${jenkins}@${ec2-35-178-213-169.eu-west-2.compute.amazonaws.com} /apache-tomcat-9.0.20/bin/shutdown.sh"
+         def startTomcat = "${jenkins}@${ec2-35-178-213-169.eu-west-2.compute.amazonaws.com} /apache-tomcat-9.0.20/startup.sh"
          def webApps = "/apache-tomcat-9.0.20/webapps/"
          try{
 			 // stop tomcat server
