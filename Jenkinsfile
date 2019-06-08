@@ -4,13 +4,10 @@ node {
     }
     
     stage('Build & Package') {
-	    sshagent(['master']) {
             sh 'mvn clean package'
-        
-    }
+       
 }
   stage('Deploy-to-Dev'){
-    sshagent(['tomcat-dev']) {
          def tomcatIp='ip-172-31-88-209.ec2.internal'
          def tomcatUsr='jenkins'
          def stopTomcat = "${jenkins}@${ip-172-31-88-209.ec2.internal} /apache-tomcat-9.0.20/bin/shutdown.sh"
@@ -22,7 +19,6 @@ node {
 		 }catch(e){
 		 
 		 }
-         }
    }
    
     stage('Results'){
