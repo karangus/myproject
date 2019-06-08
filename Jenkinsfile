@@ -9,10 +9,10 @@ node {
     }
   stage('Deploy-to-Dev'){
     sshagent(['tomcat-dev']) {
-         def tomcatIp='ec2-35-178-213-169.eu-west-2.compute.amazonaws.com'
+         def tomcatIp='ip-172-31-88-209.ec2.internal'
          def tomcatUsr='jenkins'
-         def stopTomcat = "${jenkins}@${ec2-35-178-213-169.eu-west-2.compute.amazonaws.com} /apache-tomcat-9.0.20/bin/shutdown.sh"
-         def startTomcat = "${jenkins}@${ec2-35-178-213-169.eu-west-2.compute.amazonaws.com} /apache-tomcat-9.0.20/startup.sh"
+         def stopTomcat = "${jenkins}@${ip-172-31-88-209.ec2.internal} /apache-tomcat-9.0.20/bin/shutdown.sh"
+         def startTomcat = "${jenkins}@${ip-172-31-88-209.ec2.internal} /apache-tomcat-9.0.20/startup.sh"
          def webApps = "/apache-tomcat-9.0.20/webapps/"
          try{
 			 // stop tomcat server
