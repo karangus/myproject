@@ -13,9 +13,9 @@ node {
    
     sshagent(['tomcat-dev']) {
          def tomcatIp='172.31.19.12'
-         def tomcatUsr='tomcat'
-         def stopTomcat = "${tomcat}@${172.31.19.12} /apache-tomcat-9.0.20/bin/shutdown.sh"
-         def startTomcat = "${tomcat}@${172.31.19.12} /apache-tomcat-9.0.20/startup.sh"
+         def tomcatUsr='jenkins'
+         def stopTomcat = "${jenkins}@${172.31.19.12} /apache-tomcat-9.0.20/bin/shutdown.sh"
+         def startTomcat = "${jenkins}@${172.31.19.12} /apache-tomcat-9.0.20/startup.sh"
          def webApps = "/apache-tomcat-9.0.20/webapps/"
          try{
 			 // stop tomcat server
