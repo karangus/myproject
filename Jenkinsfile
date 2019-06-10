@@ -25,7 +25,7 @@ stage('Deploy-to-Dev'){
 		 }catch(e){
 		 
 		 }
-         try{
+        // try{
 			// remove old war on tomcat
 			//sh "ssh tomcatUsr@${tomcatIp} rm /home/jenkins/apache-tomcat-9.0.20/webapps/gameoflife*"
 		 //}catch(e){
@@ -44,3 +44,5 @@ stage('Deploy-to-Dev'){
         junit 'gameoflife-web/target/surefire-reports/*.xml'
     }
 }
+
+
