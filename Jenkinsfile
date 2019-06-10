@@ -27,7 +27,7 @@ stage('Deploy-to-Dev'){
 		 }
          try{
 			// remove old war on tomcat
-			sh "ssh tomcatUsr@${tomcatIp} rm /home/jenkins/apache-tomcat-9.0.20/webapps/gameoflife.war*"
+			sh "ssh tomcatUsr@${tomcatIp} rm /home/jenkins/apache-tomcat-9.0.20/webapps/gameoflife*"
 		 }catch(e){
 		 
 		 }
