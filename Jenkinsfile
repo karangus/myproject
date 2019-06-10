@@ -16,9 +16,9 @@ stage('Deploy-to-Dev'){
     sshagent(['tomcat-dev']) {
          def tomcatIp='ip-172-31-88-209.ec2.internal'
          def tomcatUsr='jenkins'
-         def stopTomcat = "${tomcatUsr}@${tomcatIp} /apache-tomcat-9.0.20/bin/shutdown.sh"
-         def startTomcat = "${tomcatUsr}@${tomcatIp} /apache-tomcat-9.0.20/bin/startup.sh"
-         def webApps = "/apache-tomcat-9.0.20 /webapps/"
+         def stopTomcat = "${tomcatUsr}@${tomcatIp} /home/jenkins/apache-tomcat-9.0.20/bin/shutdown.sh"
+         def startTomcat = "${tomcatUsr}@${tomcatIp} /home/jenkins/apache-tomcat-9.0.20/bin/startup.sh"
+         def webApps = "/home/jenkins/apache-tomcat-9.0.20 /webapps/"
          try{
 			 // stop tomcat server
 				sh "ssh -o strictHostKeyChecking=no  ${stopTomcat}"
@@ -27,7 +27,7 @@ stage('Deploy-to-Dev'){
 		 }
          try{
 			//remove old war on tomcat
-		   sh "ssh tomcatUsr@${tomcatIp} rm /apache-tomcat-9.0.20/webapps/gameoflife*"
+		   sh "ssh tomcatUsr@${tomcatIp} rm /home/jenkins/apache-tomcat-9.0.20/webapps/gameoflife*"
 		 }catch(e){
 		 
 		 }
