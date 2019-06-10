@@ -8,7 +8,7 @@ node {
        
 }
   sshagent(['tomcat-dev']) {
- sh 'scp -o StrictHostKeyChecking=no target/*.war jenkins@ip-172-31-88-209.ec2.internal apache-tomcat-9.0.20/webapps/'
+ sh 'scp -o StrictHostKeyChecking=no target/*.war jenkins@ip-172-31-88-209.ec2.internal:/apache-tomcat-9.0.20/webapps/'
 }
    
     stage('Results'){
