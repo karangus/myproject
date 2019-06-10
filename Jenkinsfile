@@ -7,19 +7,9 @@ node {
             sh 'mvn clean package'
        
 }
-  stage('Deploy-to-Dev'){
-         def tomcatIp='ip-172-31-88-209.ec2.internal'
-         def tomcatUsr='jenkins'
-         def stopTomcat = "${jenkins}@${ip-172-31-88-209.ec2.internal} /apache-tomcat-9.0.20/bin/shutdown.sh"
-	  def startTomcat = "${jenkins}@${ip-172-31-88-209.ec2.internal} /apache-tomcat-9.0.20/startup.sh"
-         def webApps = "/apache-tomcat-9.0.20/webapps/"
-         try{
-			 // stop tomcat server
-				sh "ssh -o strictHostKeyChecking=no  ${stopTomcat}"
-		 }catch(e){
-		 
-		 }
-   }
+  sshagent(['tomcat-dev']) {
+ sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@ip-172-31-88-209.ec2.internal apache-tomcat-9.0.20/webapps/'
+}
    
     stage('Results'){
         archive 'gameoflife-web/target/gameoflife.war'
