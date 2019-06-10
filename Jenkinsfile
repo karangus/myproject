@@ -27,10 +27,10 @@ stage('Deploy-to-Dev'){
 		 }
          try{
 			// remove old war on tomcat
-			sh "ssh tomcatUsr@${tomcatIp} rm /home/jenkins/apache-tomcat-9.0.20/webapps/gameoflife*"
-		 }catch(e){
+			//sh "ssh tomcatUsr@${tomcatIp} rm /home/jenkins/apache-tomcat-9.0.20/webapps/gameoflife*"
+		 //}catch(e){
 		 
-		 }
+		// }
          // copy new war to tomcat
          sh "scp gameoflife-web/target/myweb.war ${tomcatUsr}@${tomcatIp}:${webapps}"
          // start tomcat
