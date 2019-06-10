@@ -16,8 +16,8 @@ stage('Deploy-to-Dev'){
     sshagent(['tomcat-dev']) {
          def tomcatIp='ip-172-31-88-209.ec2.internal'
          def tomcatUsr='ubuntu'
-         def stopTomcat = "${ubuntu}@${ip-172-31-88-209.ec2.internal} /home/jenkins/apache-tomcat-9.0.20 /bin/shutdown.sh"
-         def startTomcat = "${ubuntu}@${ip-172-31-88-209.ec2.internal} /home/jenkins/apache-tomcat-9.0.20 /bin/startup.sh"
+         def stopTomcat = "${tomcatUsr}@${tomcatIp} /home/jenkins/apache-tomcat-9.0.20 /bin/shutdown.sh"
+         def startTomcat = "${tomcatUsr}@${tomcatIp} /home/jenkins/apache-tomcat-9.0.20 /bin/startup.sh"
          def webApps = "/home/jenkins/apache-tomcat-9.0.20 /webapps/"
          try{
 			 // stop tomcat server
@@ -27,12 +27,12 @@ stage('Deploy-to-Dev'){
 		 }
          try{
 			// remove old war on tomcat
-			sh "ssh ubuntu@${ip-172-31-88-209.ec2.internal} rm /home/jenkins/apache-tomcat-9.0.20/webapp/gameoflife.war*"
+			sh "ssh tomcatUsr@${tomcatIp} rm /home/jenkins/apache-tomcat-9.0.20/webapp/gameoflife.war*"
 		 }catch(e){
 		 
 		 }
          // copy new war to tomcat
-         sh "scp gameoflife-web/target/myweb.war ${ubuntu}@${ip-172-31-88-209.ec2.internal}:${webapps}"
+         sh "scp gameoflife-web/target/myweb.war ${tomcatUsr}@${tomcatIp}:${webapps}"
          // start tomcat
          sh "ssh ${startTomcat}"
     }
