@@ -18,7 +18,7 @@ stage('Deploy-to-Dev'){
          def tomcatUsr='jenkins'
          def stopTomcat = "${tomcatUsr}@${tomcatIp} /./home/jenkins/apache-tomcat-9.0.20/bin/shutdown.sh"
          def startTomcat = "${tomcatUsr}@${tomcatIp} /./home/jenkins/apache-tomcat-9.0.20/bin/startup.sh"
-         def webApps = "/home/jenkins/apache-tomcat-9.0.20 /webapps/"
+         def webApps = "/./home/jenkins/apache-tomcat-9.0.20 /webapps/"
          try{
 			 // stop tomcat server
 				sh "ssh -o strictHostKeyChecking=no  ${stopTomcat}"
@@ -32,7 +32,7 @@ stage('Deploy-to-Dev'){
 		 
 		 }
          // copy new war to tomcat
-         sh "scp gameoflife-web/target/myweb.war ${tomcatUsr}@${tomcatIp}:${webapps}"
+         sh "scp gameoflife-web/target/myweb.war ${tomcatUsr}@${tomcatIp}:${webApps}"
          // start tomcat
          sh "ssh ${startTomcat}"
     }
